@@ -5,72 +5,86 @@ Registration Page
 {% endblock %}
 
 {% block head %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/reg.css') }}">
+<!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/reg.css') }}"> -->
 {% endblock %}
 
 {% block body %}
-<section class="block">
+<!-- <section class="block">
     <div class="block-title">
         Please, fill the forum
-    </div>
-    <div class="block-form">
-        <form method="POST">
-            <div class="form-group">
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Name</label>
-                    <input type="text" class="form-control" id="name" placeholder="Name">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Surname</label>
-                    <input type="text" class="form-control" id="surname" placeholder="Surname">
-                </div>
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-            </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Password">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1">Confirm Password</label>
-                <input type="password" class="form-control" id="confirm" placeholder="Confirm Password">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-            <input class="btn btn-primary" type="reset" value="Reset">
-        </form>
-        <!-- <form action="">
+    </div> -->
+    <div class="content-section">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
             <fieldset>
-                <div class="block-form-div">
-                    <label for="name">Name</label>
-                    <input type="text" name="name" id="name">
+                <legend class="border-bottom mb-4">Join Us</legend>
+                <div class="form-group">
+                    {{ form.username.label(class="form-control-label") }}
+
+                    {% if form.username.errors %}
+                        {{ form.username(class="form-control-lg is-invalid") }}
+                        <div class="ivalid-feedback">
+                            {% for error in username.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.username(class="form-control-lg") }}
+                    {% endif %}
                 </div>
-                <div class="block-form-div">
-                    <label for="surname">Surname</label>
-                    <input type="text" name="surname" id="surname">
+                <div class="form-group">
+                    {{ form.email.label(class="form-control-label") }}
+                    
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control-lg is-invalid") }}
+                        <div class="ivalid-feedback">
+                            {% for error in email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class="form-control-lg") }}
+                    {% endif %}
                 </div>
-                <div class="block-form-div">
-                    <label for="email">Email</label>
-                    <input type="email" name="email" id="email">
+                <div class="form-group">
+                    {{ form.password.label(class="form-control-label") }}
+
+                    {% if form.password.errors %}
+                        {{ form.password(class="form-control-lg is-invalid") }}
+                        <div class="ivalid-feedback">
+                            {% for error in password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.password(class="form-control-lg") }}
+                    {% endif %}
                 </div>
-                <div class="block-form-div">
-                    <label for="password">Password</label>
-                    <input type="password" name="password" id="password">
+                <div class="form-group">
+                    {{ form.confirm_password.label(class="form-control-label") }}
+
+                    {% if form.confirm_password.errors %}
+                        {{ form.confirm_password(class="form-control-lg is-invalid") }}
+                        <div class="ivalid-feedback">
+                            {% for error in confirm_password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.confirm_password(class="form-control-lg") }}
+                    {% endif %}
                 </div>
-                <div class="block-form-div">
-                    <label for="bday">Birth Date</label>
-                    <input type="date" name="bday" id="bday">
-                </div>
-                <div class="block-form-div">
-                    <label for="male">Male</label>
-                    <input type="radio" name="male" id="male" checked>
-                    <label for="female">Female</label>
-                    <input type="radio" name="female" id="female">
-                </div>
-                <input class="submit" type="submit" />
-                <input class="reset" type="reset" />
             </fieldset>
-        </form> -->
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                Already have an acc? <a class="ml-2" href="{{ url_for('login') }}"> Sign in </a>
+            </small>
+        </div>
     </div>
-</section>
+<!-- </section> -->
 {% endblock %}
+
