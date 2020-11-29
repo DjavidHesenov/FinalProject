@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
-
+<head>
+    <script src="{{url_for('static', filename = 'js/ckeditor/ckeditor.js') }}"></script>
+</head>
 {% block title %}
 Create a post
 {% endblock %}
@@ -35,7 +37,7 @@ Create a post
                         {% endfor %}
                     </div>
                 {% else %}
-                    {{ form.content(class="form-control-lg") }}
+                    {{ form.content(class="form-control-lg")}}
                 {% endif %}
             </div>
             </fieldset>
@@ -44,4 +46,8 @@ Create a post
         </div>
     </form>
 </div>
+<script>
+    CKEDITOR.replace( 'form-control-lg' );
+    CKEDITOR.replace( 'content' );
+</script>
 {% endblock %}
